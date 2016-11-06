@@ -1,0 +1,7 @@
+{
+  "name": "ANGULARJSROUTING_SB",
+  "dependencies": {},
+  "devDependencies": {
+    "AngularJS-Toaster": "toaster#^2.0.0"
+  }
+}
