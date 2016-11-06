@@ -9,8 +9,10 @@ var api = {
     registerUrl: '/register',
     getTrainStations: "/trainStation",
     getGlobalSections: "/globalSections",
-    getPlanSections: "/userPlanSectionsList"
+    getPlanSections: "/userPlanSectionsList",
+    plans : "/plans"
 };
+
 
 
 var apiUrl = api.protocol + '://' + api.server + ':' + api.port + api.baseUrl;
@@ -18,6 +20,7 @@ var apiLoginUrl = api.protocol + '://' + api.server + ':' + api.port + api.login
 var apiRegisterUrl = api.protocol + '://' + api.server + ':' + api.port + api.registerUrl;
 var apiGetTrainStations = apiUrl + api.getTrainStations;
 var apiGetPlan = apiUrl + api.getPlanSections;
+var apiUserPlan = apiUrl + api.plans;
 var initInjector = angular.injector(['ng']);
 var $http = initInjector.get('$http');
 

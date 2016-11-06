@@ -11,7 +11,6 @@ angular.module('smartSchoolAdminApp')
       contoller: function ($scope, $http) {
 
         
-
       }
 
 
