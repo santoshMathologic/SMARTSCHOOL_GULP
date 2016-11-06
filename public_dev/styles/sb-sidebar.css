@@ -62,6 +62,8 @@
     display: block;
     text-decoration: none;
     color: #fff;
+    margin: 41px 3px -39px 1px;
+  
 }
 
 .sidebar-nav li a:hover {
