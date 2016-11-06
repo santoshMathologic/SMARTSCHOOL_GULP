@@ -90,11 +90,14 @@
     text-decoration: none;
     color: #fff;
     background: hsla(0,0%,100%,.2);
+   /* height: 30px!important; */
+     /*padding: 0px 0px 0px 0px;  */
 }
 
 .sidebar-nav .nav-second-level li a {
     padding-left: 37px;
     margin: 21px 0px -45px -9px;
+    
 }
 
 
