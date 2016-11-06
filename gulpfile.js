@@ -99,6 +99,11 @@ gulp.task('useref', function() {
 });
 
 
+gulp.task('javascripts', function() {
+    return gulp.src(input + 'javascripts/*.js')
+        .pipe(gulp.dest(output + 'javascripts/'))
+})
+
 
 // Live-Sync on browser
 gulp.task('browserSync', function() {
@@ -126,6 +131,7 @@ gulp.task('cache:clear', function(callback) {
 // This is watch to update the browser in any file changes
 gulp.task('watch', ['browserSync', 'styles', 'ng','views', 'useref'], function() {
     gulp.watch(input + 'css/**/*.css', ['styles']);
+    gulp.watch(input + 'javascripts/**/*.js', ['javascripts']);
     gulp.watch(input + 'ng/**/*', ['ng', 'useref']);
     gulp.watch(input + 'views/**/*', ['views', 'useref']);
     gulp.watch(input + '**/*.html', ['useref']);
@@ -136,14 +142,14 @@ gulp.task('watch', ['browserSync', 'styles', 'ng','views', 'useref'], function()
 
 gulp.task('build', function(callback) {
     runSequence('clean:' + outputPath,
-        ['styles', 'useref', 'ng','views','assests','bower_components'],
+        ['styles', 'useref', 'ng','views','assests','bower_components','javascripts'],
         callback
     )
 });
 
 
 gulp.task('default', function(callback) {
-    runSequence(['styles', 'ng','views', 'useref', 'browserSync', 'watch','bower_components','assests'],
+    runSequence(['styles', 'ng','views', 'useref', 'browserSync', 'watch','bower_components','assests','javascripts'],
         callback
     )
 });
