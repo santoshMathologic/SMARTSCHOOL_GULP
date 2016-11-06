@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('smartSchoolAdminApp')
-  .controller('userPlanCtrl', function($scope,$position) {
+  .controller('userPlanCtrl', function($scope,$position,$http) {
 
 
     $scope.userPlanLists = [];

@@ -7,9 +7,6 @@ var api = {
     baseUrl: '/api/v1',
     loginUrl: '/login',
     registerUrl: '/register',
-    getTrainStations: "/trainStation",
-    getGlobalSections: "/globalSections",
-    getPlanSections: "/userPlanSectionsList",
     plans : "/plans"
 };
 
