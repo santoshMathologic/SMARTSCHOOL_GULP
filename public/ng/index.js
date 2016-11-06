@@ -27,6 +27,7 @@ angular
                     name:'smartSchoolAdminApp',
                     files:[
                     'ng/directives/header/header.js',
+                     'ng/directives/sidebar/sidebar.js',
                     
                     
                     ]
