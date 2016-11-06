@@ -6,6 +6,8 @@ var merge = require('merge-stream');
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
+var less = require('gulp-less');
+var sass = require('gulp-sass');
 var browserSync = require('browser-sync').create();
 var cache = require('gulp-cache');
 var del = require('del');
@@ -26,11 +28,22 @@ var input = inputPath + '/';
 
 gulp.task('styles', function() {
 
+      var lessStream = gulp.src(input + 'less/**/*.less')
+        .pipe(less())
+        .pipe(concat('less-files.less'));
+
+        
+    var scssStream = gulp.src(input + 'scss/**/*.scss')
+        .pipe(sass())
+        .pipe(concat('scss-files.scss'));
+
+
          var cssStream = gulp.src(input + 'styles/**/*.css')
         .pipe(concat('css-files.css'))
         ;
 
-    var mergedStream = merge(cssStream)
+
+    var mergedStream = merge(cssStream,lessStream,scssStream)
         .pipe(concat('main.styles.min.css'))
         .pipe(cssnano())
         .pipe(gulp.dest(output + 'stylesheets'));
