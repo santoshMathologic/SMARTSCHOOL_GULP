@@ -6,7 +6,7 @@ angular.module('smartSchoolAdminApp')
       restrict: 'E',
       replace: true,
       scope: {
-        'userdetails': '=',
+        'userdetails': '='
       },
       contoller: function ($scope, $http) {
 

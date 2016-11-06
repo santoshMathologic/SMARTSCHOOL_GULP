@@ -9,10 +9,17 @@ body {
 }
 #page-wrapper {
     padding: 0 15px;
-    min-height:700px;
+    min-height: 568px;
     background-color: #fff;
 }
 
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        padding: 0 10px;
+        border-left: 1px solid #e7e7e7;
+    }
+}
 
 
 hr.style1{
@@ -23,4 +30,5 @@ hr.style1{
     border-radius: 50%;
     width: 100px;
     height: 100px;
+    margin: 0px 5px 3px 18px;
 }

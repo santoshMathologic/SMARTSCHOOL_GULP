@@ -1,8 +1,11 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
+
+
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
+            
             <li class="sidebar-brand">
 
                 <div ng-init="schoolvar = 'assets/schoollogo.png'">
@@ -12,11 +15,25 @@
 
             </li>
 
-         
+            <button tooltip="{{tooltipMessage}}" tooltip-placement="left" tooltip-popup-delay="300" class="fa fa-chevron-left btn btn-primary"
+                id="togglebutton" type="button" ng-click="hideSidebar()" style="border-radius:0px;background-color:maroon"></button>
+
+
 
             <li>
                 <a href="#"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
             </li>
+
+            <li ng-class="{active: collapseVar==2}">{{dropDown}} <a href="" ng-click="check(2)"><i class="fa fa-tachometer" aria-hidden="true"></i> Station
+						<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level" collapse="collapseVar!=2">
+                    <li ui-sref-active="active"><a ui-sref="dashboard.stations">
+                        List All Stations</a></li> 
+                    <li ui-sref-active="active"><a ui-sref="dashboard.divisions">Divisions</a>
+                    </li>
+                </ul>
+            </li>
+
             <li>
                 <a href="#"><i class="fa fa-tachometer" aria-hidden="true"></i> Shortcuts</a>
             </li>
@@ -35,11 +52,11 @@
             <li>
                 <a href="#"><i class="fa fa-tachometer" aria-hidden="true"></i> Contact</a>
             </li>
-             <li>
+            <li>
                 <a href="#"><i class="fa fa-tachometer" aria-hidden="true"></i> UserProfile</a>
             </li>
-                <li>
-                <a href="#"><i class="fa fa-tachometer" aria-hidden="true"></i> UserProfile</a>
+            <li>
+                <a ui-sref="dashboard.user"><i class="fa fa-tachometer" aria-hidden="true"></i> User</a>
             </li>
         </ul>
 
