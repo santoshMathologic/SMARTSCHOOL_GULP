@@ -99,6 +99,22 @@ angular
           }
         }
       })
+        .state('dashboard.userPlan',{
+        url:'/userPlan',
+        controller: 'userPlanCtrl',
+        templateUrl:'views/dashboard/userPlan.tmpl.html',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'smartSchoolAdminApp',
+              files:[
+              'ng/directives/dashboard/userPlan/userPlan.js',
+              'ng/controllers/userPlan.js',
+              ]
+            })
+          }
+        }
+      })
       .state('login',{
         templateUrl:'views/dashboard/login.html',
         url:'/login'
