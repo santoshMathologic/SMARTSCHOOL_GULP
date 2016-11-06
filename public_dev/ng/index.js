@@ -49,7 +49,8 @@ angular
                     files:[
                     'ng/directives/header/header.js',
                      'ng/directives/sidebar/sidebar.js',
-                     'ng/utils/serverFetch.js'
+                     'ng/utils/serverTableFetch.js',
+                     'ng/utils/customSearch.js'
                     
                     
                     ]
