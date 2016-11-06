@@ -19,4 +19,11 @@ hr.style1{
 	border-top: 1px solid #8c8b8b;
 }
 
-
+#circle {
+width: 70px;
+    height: 70px;
+    background: #000;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    margin-left: 60px;
+}

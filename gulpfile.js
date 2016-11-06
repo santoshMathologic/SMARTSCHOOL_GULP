@@ -64,6 +64,13 @@ gulp.task('views', function() {
         .pipe(gulp.dest(output + 'views'))
 });
 
+// Copy Images
+gulp.task('assests', function() {
+    return gulp.src(input + 'assets/**/*.+(png|jpg|jpeg|gif)')
+        .pipe(gulp.dest(output + 'assets'))
+});
+
+
 
 gulp.task('bower_components', function() {
     console.log("bower is updating");
@@ -129,14 +136,14 @@ gulp.task('watch', ['browserSync', 'styles', 'ng','views', 'useref'], function()
 
 gulp.task('build', function(callback) {
     runSequence('clean:' + outputPath,
-        ['styles', 'useref', 'ng','views','bower_components'],
+        ['styles', 'useref', 'ng','views','assests','bower_components'],
         callback
     )
 });
 
 
 gulp.task('default', function(callback) {
-    runSequence(['styles', 'ng','views', 'useref', 'browserSync', 'watch','bower_components'],
+    runSequence(['styles', 'ng','views', 'useref', 'browserSync', 'watch','bower_components','assests'],
         callback
     )
 });
