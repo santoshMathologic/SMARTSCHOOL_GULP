@@ -1,5 +1,26 @@
 'use strict';
 
+var api = {
+    protocol: 'http',
+    server: 'localhost',
+    port: 4000,
+    baseUrl: '/api/v1',
+    loginUrl: '/login',
+    registerUrl: '/register',
+    getTrainStations: "/trainStation",
+    getGlobalSections: "/globalSections",
+    getPlanSections: "/userPlanSectionsList"
+};
+
+
+var apiUrl = api.protocol + '://' + api.server + ':' + api.port + api.baseUrl;
+var apiLoginUrl = api.protocol + '://' + api.server + ':' + api.port + api.loginUrl;
+var apiRegisterUrl = api.protocol + '://' + api.server + ':' + api.port + api.registerUrl;
+var apiGetTrainStations = apiUrl + api.getTrainStations;
+var apiGetPlan = apiUrl + api.getPlanSections;
+var initInjector = angular.injector(['ng']);
+var $http = initInjector.get('$http');
+
 angular
   .module('smartSchoolAdminApp', [
     'oc.lazyLoad',
@@ -28,6 +49,7 @@ angular
                     files:[
                     'ng/directives/header/header.js',
                      'ng/directives/sidebar/sidebar.js',
+                     'ng/utils/serverFetch.js'
                     
                     
                     ]
