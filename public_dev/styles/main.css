@@ -9,14 +9,13 @@ body {
     
 }
 #page-wrapper {
-   padding: 0px 15px;
-    /* min-height: 605px; */
+    padding: 0 15px;
+    min-height: 568px;
     background-color: #fff;
     overflow: auto;
-    height: 100%;
-    position: fixed;
-    width: 100%;
-    margin: 60px 6px 5px 3px;
+  /*  position: fixed; */
+    margin: 10px 6px 5px 3px;
+
 }
 
 
