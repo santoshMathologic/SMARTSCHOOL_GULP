@@ -4,4 +4,5 @@ angular.module('smartSchoolAdminApp')
   .controller('userCtrl', function($scope,$position) {
       console.log("DASDASD");
       console.log(""+"santosh".capitalizeFirstLetter());
+      console.log(""+"santosh".isEmpty());
   });

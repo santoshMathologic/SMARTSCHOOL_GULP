@@ -13,7 +13,7 @@ var api = {
 
 
 var apiUrl = api.protocol + '://' + api.server + ':' + api.port + api.baseUrl;
-var apiLoginUrl = api.protocol + '://' + api.server + ':' + api.port + api.loginUrl;
+var apiLoginUrl = api.protocol + '://' + api.server + ':' + api.port + api.baseUrl +api.loginUrl;
 var apiRegisterUrl = api.protocol + '://' + api.server + ':' + api.port + api.registerUrl;
 var apiGetTrainStations = apiUrl + api.getTrainStations;
 var apiGetPlan = apiUrl + api.getPlanSections;
@@ -27,7 +27,8 @@ angular
     'ui.router',
     'ui.bootstrap',
     'angular-loading-bar',
-    'toaster'
+    'toaster',
+    'ngCookies'
   ])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
     
@@ -51,7 +52,8 @@ angular
                     'ng/directives/header/header.js',
                      'ng/directives/sidebar/sidebar.js',
                      'ng/utils/serverTableFetch.js',
-                     'ng/utils/customSearch.js'
+                     'ng/utils/customSearch.js',
+                     
                     
                     
                     ]
@@ -141,7 +143,22 @@ angular
       })
       .state('login',{
         templateUrl:'views/dashboard/login.html',
-        url:'/login'
+        url:'/login',
+        controller: 'LoginCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'smartSchoolAdminApp',
+              files:[
+              'ng/controllers/login.js',
+              'ng/factory/auth.js',
+              'ng/utils/customSearch.js'
+              
+              ]
+            })
+          }
+        }
+
     })
       
      
