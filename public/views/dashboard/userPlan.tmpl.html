@@ -23,7 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="userplan in userPlanLists">
+                            <tr ng-repeat="(key,userplan) in userPlanLists">
                                 <td>{{userplan.planName}}</td>
                                 <td>{{userplan.owner}}</td>
                                 <td>{{userplan.reviewer}}</td>
@@ -43,11 +43,8 @@
                 </div>
             </div>
 
-
-
-            <user-plan-form></user-plan-form>
+            <user-plan></user-plan> 
+            <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'position-class':'toast-bottom-right'}"></toaster-container>
         </div>
     </div>
-
-
 </div>
