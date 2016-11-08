@@ -15,6 +15,7 @@ var runSequence = require('run-sequence');
 var rename = require('gulp-rename');
 var gulpMultinject = require('gulp-multinject');
 var sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer');
 
 var inputPath = 'public_dev';  // eg.: src  or  src/html
 var outputPath = 'public';  // eg.: dist  or public/html
