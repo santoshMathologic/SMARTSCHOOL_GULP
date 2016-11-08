@@ -26,34 +26,34 @@ var output = outputPath + '/';
 var input = inputPath + '/';
 
 
- 
+
 function log(msg) {
-    
-    gutil.log(msg,gutil.colors.magenta('123'));
+
+    gutil.log(msg, gutil.colors.magenta('123'));
 }
 
-gulp.task('styles', function() {
-      log("Gulp compiler inside Styles task")
-      var lessStream = gulp.src(input + 'less/**/*.less')
+gulp.task('styles', function () {
+    log("Gulp compiler inside Styles task")
+    var lessStream = gulp.src(input + 'less/**/*.less')
         .pipe(less())
         .pipe(concat('less-files.less'));
 
-        
+
     var scssStream = gulp.src(input + 'scss/**/*.scss')
-        
+
         .pipe(sass())
         .pipe(concat('scss-files.scss'));
 
 
     var cssStream = gulp.src(input + 'styles/**/*.css')
-         .pipe(minifyCSS())
-         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
-         .pipe(concat('css-files.css'));
+        .pipe(minifyCSS())
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+        .pipe(concat('css-files.css'));
 
 
-    var mergedStream = merge(cssStream,lessStream,scssStream)
+    var mergedStream = merge(cssStream, lessStream, scssStream)
         .pipe(concat('main.styles.min.css'))
-        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(cssnano())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(output + 'stylesheets'));
@@ -62,34 +62,34 @@ gulp.task('styles', function() {
 });
 
 // Copy all ng js files
-gulp.task('ng', function() {
+gulp.task('ng', function () {
     console.log("ng is updating");
     return gulp.src(input + 'ng/**/*')
         .pipe(gulp.dest(output + 'ng'))
 });
 
-gulp.task('views', function() {
+gulp.task('views', function () {
     console.log("views is updating");
     return gulp.src(input + 'views/**/*')
         .pipe(gulp.dest(output + 'views'))
 });
 
 // Copy Images
-gulp.task('assests', function() {
+gulp.task('assests', function () {
     return gulp.src(input + 'assets/**/*.+(png|jpg|jpeg|gif)')
         .pipe(gulp.dest(output + 'assets'))
 });
 
 
 
-gulp.task('bower_components', function() {
+gulp.task('bower_components', function () {
     console.log("bower is updating");
     return gulp.src(input + 'bower_components/**/*')
         .pipe(gulp.dest(output + 'bower_components'))
 });
 
- 
-gulp.task('useref', function() {
+
+gulp.task('useref', function () {
 
     if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == undefined) {
         console.log('in development');
@@ -109,57 +109,60 @@ gulp.task('useref', function() {
 });
 
 
-gulp.task('javascripts', function() {
+gulp.task('javascripts', function () {
     return gulp.src(input + 'javascripts/*.js')
         .pipe(gulp.dest(output + 'javascripts/'))
 })
 
 
 // Live-Sync on browser
-gulp.task('browserSync', function() {
+gulp.task('browserSync', function () {
     browserSync.init({
         server: {
-            baseDir: output
+         baseDir: output
         },
+       
     })
 });
 
 
 
 // Clean up: clean {{outputPath}}
-gulp.task('clean:' + outputPath, function() {
+gulp.task('clean:' + outputPath, function () {
     return del.sync(outputPath);
 });
 
 // Clean everything
-gulp.task('cache:clear', function(callback) {
+gulp.task('cache:clear', function (callback) {
     return cache.clearAll(callback)
 });
 
 
 
 // This is watch to update the browser in any file changes
-gulp.task('watch', ['browserSync', 'styles', 'ng','views', 'useref'], function() {
+gulp.task('watch', ['browserSync', 'styles', 'ng', 'views', 'useref'], function () {
+
+
     gulp.watch(input + 'css/**/*.css', ['styles']);
     gulp.watch(input + 'javascripts/**/*.js', ['javascripts']);
     gulp.watch(input + 'ng/**/*', ['ng', 'useref']);
     gulp.watch(input + 'views/**/*', ['views', 'useref']);
     gulp.watch(input + '**/*.html', ['useref']);
     gulp.watch(input + '**/*', browserSync.reload);
-    
+
 });
 
 
-gulp.task('build', function(callback) {
+gulp.task('build', function (callback) {
     runSequence('clean:' + outputPath,
-        ['styles', 'useref', 'ng','views','assests','bower_components','javascripts'],
+        ['styles', 'useref', 'ng', 'views', 'assests', 'bower_components', 'javascripts'],
         callback
     )
 });
 
 
-gulp.task('default', function(callback) {
-    runSequence(['styles', 'ng','views', 'useref', 'browserSync', 'watch','bower_components','assests','javascripts'],
+gulp.task('default', function (callback) {
+    runSequence(['styles', 'ng', 'views', 'useref', 'browserSync', 'watch', 'bower_components', 'assests', 'javascripts'],
         callback
     )
 });
