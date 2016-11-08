@@ -14,6 +14,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var rename = require('gulp-rename');
 var gulpMultinject = require('gulp-multinject');
+var sourcemaps = require('gulp-sourcemaps');
 
 var inputPath = 'public_dev';  // eg.: src  or  src/html
 var outputPath = 'public';  // eg.: dist  or public/html
@@ -38,14 +39,15 @@ gulp.task('styles', function() {
         .pipe(concat('scss-files.scss'));
 
 
-         var cssStream = gulp.src(input + 'styles/**/*.css')
-        .pipe(concat('css-files.css'))
-        ;
+    var cssStream = gulp.src(input + 'styles/**/*.css')
+         .pipe(concat('css-files.css'));
 
 
     var mergedStream = merge(cssStream,lessStream,scssStream)
         .pipe(concat('main.styles.min.css'))
+        .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(cssnano())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(output + 'stylesheets'));
 
     return mergedStream;
