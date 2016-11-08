@@ -1,7 +1,7 @@
 var gulp = require("gulp");
 var cssnano = require('gulp-cssnano');
 var concat = require('gulp-concat');
-var minify = require('gulp-minify-css');
+var minifyCSS = require('gulp-minify-css');
 var merge = require('merge-stream');
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
@@ -11,6 +11,7 @@ var sass = require('gulp-sass');
 var browserSync = require('browser-sync').create();
 var cache = require('gulp-cache');
 var del = require('del');
+var gutil = require('gulp-util');
 var runSequence = require('run-sequence');
 var rename = require('gulp-rename');
 var gulpMultinject = require('gulp-multinject');
@@ -25,22 +26,28 @@ var output = outputPath + '/';
 var input = inputPath + '/';
 
 
-
-
+ 
+function log(msg) {
+    
+    gutil.log(msg,gutil.colors.magenta('123'));
+}
 
 gulp.task('styles', function() {
-
+      log("Gulp compiler inside Styles task")
       var lessStream = gulp.src(input + 'less/**/*.less')
         .pipe(less())
         .pipe(concat('less-files.less'));
 
         
     var scssStream = gulp.src(input + 'scss/**/*.scss')
+        
         .pipe(sass())
         .pipe(concat('scss-files.scss'));
 
 
     var cssStream = gulp.src(input + 'styles/**/*.css')
+         .pipe(minifyCSS())
+         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
          .pipe(concat('css-files.css'));
 
 
